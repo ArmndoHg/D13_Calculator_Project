@@ -33,6 +33,10 @@ The user should be able to see the list of tasks, add new ones, delete existing 
         font-weight: bold;
     }
 
+    input[type=button]{
+        padding: 10px;
+    }
+
   </style>
 </head>
 <h1>Welcome to your personal Task List!</h1>
@@ -78,10 +82,10 @@ The user should be able to see the list of tasks, add new ones, delete existing 
           const list = document.getElementById('myTaskList')
 
           const addNewTask = function(){
+
             const newLi = document.createElement('li')
-            const newCont = document.createTextNode(taskDetailNode.value)
-            newLi.classList.add('listTask')
-            newLi.appendChild(newCont)
+            
+            newLi.innerHTML = taskDetailNode.value
             list.appendChild(newLi)
           }
 
