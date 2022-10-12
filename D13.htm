@@ -52,7 +52,7 @@ The user should be able to see the list of tasks, add new ones, delete existing 
   <!-- EXERCISE 4
         Create a button "Remove First Task" to trigger the function "removeFirst"
         -->
-        <button id="removingFirst">Remove First Task</button>
+        <input type="button" value="Remove First Task" onclick="removeFirst()"/>
 
   <ul id="myTaskList"></ul>
 
@@ -73,38 +73,56 @@ The user should be able to see the list of tasks, add new ones, delete existing 
               - Use the document.createElement to create the new List Item
               - Append the LI child to the UL
           */
-         const ulnode = document.getElementById("myTaskList")
 
-         const addingNewTask = function () {
-         const newList = document.createElement("li")
-         const newTaskList = document.getElementById("newTask").value
-         newList.appendChild(document.createTextNode(newTaskList))
-         ul.appendChild(newList)
-         }
+          const taskDetailNode = document.getElementById('newTask')
+          const list = document.getElementById('myTaskList')
+
+          const addNewTask = function(){
+            const newLi = document.createElement('li')
+            const newCont = document.createTextNode(taskDetailNode.value)
+            newLi.classList.add('listTask')
+            newLi.appendChild(newCont)
+            list.appendChild(newLi)
+          }
 
     /* EXERCISE 6:
               Create a function "removeLast" which removes the last item from the task list
           */
          const removeLast = function () {
-            const newTaskl = document.getElementById("myTaskList");
-            newTaskl.removeChild(newTaskl.lastElementChild);
+            list.removeChild(list.lastElementChild)
+
          }
          
     /* EXERCISE 7:
               Create a function "removeFirst" which removes the first item from the task list
           */
          const removeFirst = function () {
-            const newTaskl = document.getElementById("myTaskList");
-            newTaskl.removeChild(newTaskl.firstElementChild);
+            list.removeChild(list.firstElementChild);
          }
     /* EXERCISE 8:
              Create a function "getTasksAsArray" which returns, and prints to the console an array containing the tasks as strings
           */
-
+         const getTaskAsArray = function (){
+            const arrLu = document.querySelectorAll('li')
+            const array = [];
+            for (i=0; i < arrLu.length; i++) {
+                array.push(arrLu[i].innerText)
+            }
+            console.log(array)
+         }
     /* EXERCISE 9:
              Create a function "changeTaskBackgroundColor" and attach it to the "Change task background" button via JavaScript (not via html attribute)
              Take the color from the color picker ad apply it as background to every list item
     */
+   const changeTaskBackgroundColor = function(){
+    const li = document.querySelectorAll('li')
+    const newColor = document.getElementById('colorPicker')
+    for ( i = 0; i <li.length; i++){
+        li[i].style.backgroundColor = newColor.value;
+    }
+    }
+    let colorButton = document.getElementsByTagName('input')[5]
+    colorButton.addEventListener('click', changeTaskBackgroundColor);
 
     /* ### EXTRA ### */
 
